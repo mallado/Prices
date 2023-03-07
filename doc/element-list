@@ -1,0 +1,15 @@
+com.akkodis.test.prices.application
+com.akkodis.test.prices.domain
+com.akkodis.test.prices.domain.exception
+com.akkodis.test.prices.domain.services
+com.akkodis.test.prices.infrastructure.config.spring
+com.akkodis.test.prices.infrastructure.inputadapter.rest.dto
+com.akkodis.test.prices.infrastructure.inputadapter.rest.error
+com.akkodis.test.prices.infrastructure.inputadapter.rest.mapper
+com.akkodis.test.prices.infrastructure.inputadapter.rest.resources
+com.akkodis.test.prices.infrastructure.inputport
+com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.config
+com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.dbo
+com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.mapper
+com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.repository
+com.akkodis.test.prices.infrastructure.outputport

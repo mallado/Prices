@@ -5,6 +5,13 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 
+ * @author fmallado
+ * @since 1.0.0
+ *
+ */
+
 @Getter
 @AllArgsConstructor
 public class ErrorMessage {

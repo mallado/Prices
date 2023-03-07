@@ -5,6 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.dbo.PriceEntity;
 
+/**
+ * Respositorio de Spring usado para realizar las consultas con la BBDD.
+ * 
+ * @author fmallado
+ * @since 1.0.0
+ */
 @Repository
 public interface SpringDataPriceRepository extends JpaRepository<PriceEntity, Integer> 
 {

@@ -22,21 +22,53 @@ import com.akkodis.test.prices.domain.Price;
 import com.akkodis.test.prices.domain.exception.PriceException;
 import com.akkodis.test.prices.domain.services.SalesService;
 
-
+/**
+ * Pruebas unitarias sobre la capa de dominio
+ * 
+ * @author fmallado
+ * @since 1.0.0
+ */
 @DisplayName("Pruebas unitarias sobre la capa de dominio")
 class PricesDomainTests {
 	
+	/**
+	 * logger
+	 */
     private static final Logger logger = LogManager.getLogger(PricesDomainTests.class);
 
-	//Crear un mokito para obtener la lista de precios de un producto. 
+    /**
+     * Listado de precios que simula los datos existentes en BBDD
+     */
 	private static List<Price> productPriceList = new ArrayList<>();
 	
-	private static final Integer BRAND_ID = 1;
+	/**
+     * Identificador un producto para el que existen tarifas en la BBDD
+     */
 	private static final Integer PRODUCT_ID = 35455;
+	
+	/**
+	 * Fecha de aplicación de una tarifa para el producto PRODUCT_ID para la que existen tarifas en la BBDD.
+	 */
 	private static final OffsetDateTime DATE_APPLICATION_PRODUCT_EXISTENT  = OffsetDateTime.parse("2020-06-15T00:01:00+02:00");
 	
+	/**
+	 * Código de una cadena para la que no existen precios en la BBDD.
+	 */
 	private static final Integer BRAND_ID_NON_EXISTEN = 99;
+
+	/**
+	 * Código de una cadena para la que existen precios en la BBDD.
+	 */
+	private static final Integer BRAND_ID = 1;
+	
+	/**
+     * Identificador un producto para el no existen tarifas en la BBDD.
+     */
 	private static final Integer PRODUCT_ID_NON_EXISTENT = 999999;
+	
+	/**
+     * Fecha de aplicación de una tarifa para el producto PRODUCT_ID para la que no existen tarifas en la BBDD.
+     */
 	private static final OffsetDateTime DATE_APPLICATION_PRODUCT_NON_EXISTENT  = OffsetDateTime.parse("2000-01-01T00:00:00+01:00");
 	
 	@BeforeAll
@@ -110,38 +142,36 @@ class PricesDomainTests {
 	void requeryParamWhitOutTest() {
 			
 		logger.info("##### Start requeryParamWhitOutTest #####");
+		logger.info("Lanzando prueba sin el BRAND_ID");
 		IllegalArgumentException textException = catchThrowableOfType(() -> { 
 			SalesService.getProductPrice(null, DATE_APPLICATION_PRODUCT_EXISTENT, PRODUCT_ID, productPriceList); },
 				IllegalArgumentException.class);
-
 		assertThat(textException).hasMessage("El parámetro brandId es obligatorio.");
 		
+		logger.info("Lanzando prueba sin el DATE_APPLICATION_PRODUCT_EXISTENT");
 		textException = catchThrowableOfType(() -> { 
 			SalesService.getProductPrice(BRAND_ID, null, PRODUCT_ID, productPriceList); },
 				IllegalArgumentException.class);
-
 		assertThat(textException).hasMessage("El parámetro applicationDate es obligatorio.");
 		
+		logger.info("Lanzando prueba sin el PRODUCT_ID");
 		textException = catchThrowableOfType(() -> { 
 			SalesService.getProductPrice(BRAND_ID, DATE_APPLICATION_PRODUCT_EXISTENT, null, productPriceList); },
 				IllegalArgumentException.class);
-
 		assertThat(textException).hasMessage("El parámetro productId es obligatorio.");
 		
+		logger.info("Lanzando prueba sin la lista de precios");
 		textException = catchThrowableOfType(() -> { 
 			SalesService.getProductPrice(BRAND_ID, DATE_APPLICATION_PRODUCT_EXISTENT, PRODUCT_ID, null); },
 				IllegalArgumentException.class);
-
 		assertThat(textException).hasMessage("La lista de precios del producto es obligatoria.");
 		
+		logger.info("Lanzando prueba con la lista de precios vacía");
 		PriceException textPriceException = catchThrowableOfType(() -> { 
 				SalesService.getProductPrice(BRAND_ID, DATE_APPLICATION_PRODUCT_EXISTENT, PRODUCT_ID, new ArrayList<>()); },
 				PriceException.class);
-
 		assertThat(textPriceException).hasMessage("No existen precios definidos para el brandId y productId indicados.");
 		
 		logger.info("##### End requeryParamWhitOutTest #####");
 	}
-
-	
 }

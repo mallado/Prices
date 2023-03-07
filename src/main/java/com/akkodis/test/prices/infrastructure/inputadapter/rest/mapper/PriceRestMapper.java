@@ -4,18 +4,27 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.akkodis.test.prices.domain.Price;
-import com.akkodis.test.prices.infrastructure.inputadapter.rest.dto.PriceDto;
 import com.akkodis.test.prices.infrastructure.inputadapter.rest.dto.ResponseProductPriceDto;
 
+/**
+ * Mapper usado para realizar los mapeos entre los objetos usados por los
+ * puertos de entrada y los objetos del dominio
+ * 
+ * @author fmallado
+ * @since 1.0.0
+ *
+ */
 @Mapper(componentModel = "spring")
 public interface PriceRestMapper {
 
 	PriceRestMapper INSTANCE = Mappers.getMapper(PriceRestMapper.class);
-	
-	PriceDto toDto (Price price);
 
-	Price toDomain(PriceDto priceDto);
-		
-	ResponseProductPriceDto toResponseProductPriceDto (Price price);
-	
+	/**
+	 * Método que transforma un Price a ResponseProductPriceDto
+	 * 
+	 * @param price Objeto Price a transformar
+	 * @return Objeto ResponseProductPriceDto transformado
+	 */
+	ResponseProductPriceDto toResponseProductPriceDto(Price price);
+
 }

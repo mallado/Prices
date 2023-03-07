@@ -48,6 +48,9 @@ Debe tener instalado el siguiente software
    ```sh
    mvn spring-boot:run
    ```
+   
+### Pruebas
+Para poder realizar llamadas al API puede acceder mediante la siguiente URL: http://localhost:8080/swagger-ui/index.html
 
 ### Notas
 Si desea ejecutar el proyecto desde eclipse es necesario que tenga instalada la extensión de Lombok. Para ello es necesario realizar los sigueintes pasos:

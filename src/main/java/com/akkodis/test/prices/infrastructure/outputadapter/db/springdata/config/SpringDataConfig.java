@@ -10,6 +10,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Clase de configuración de String para el repositorio de salida (BBDD).
+ * 
+ * @author fmallado
+ * @since 1.0.0
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.repository")
 @ConfigurationProperties("spring.datasource")
