@@ -32,7 +32,7 @@ public class ResponseProductPriceDto {
 	/**
 	 * Precio final de venta.
 	 */
-	private BigDecimal price;
+	private BigDecimal pvp;
 	
 	/**
 	 * Código iso de la moneda.

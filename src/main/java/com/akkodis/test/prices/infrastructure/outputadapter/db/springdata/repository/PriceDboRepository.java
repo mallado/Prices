@@ -2,6 +2,8 @@ package com.akkodis.test.prices.infrastructure.outputadapter.db.springdata.repos
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,11 @@ import lombok.RequiredArgsConstructor;
 public class PriceDboRepository implements PriceRepositoryPort {
 
 	/**
+	 * logger
+	 */
+    private static final Logger logger = LogManager.getLogger(PriceDboRepository.class);
+    
+	/**
 	 * Respositorio de Spring usado para realizar las consultas con la BBDD.
 	 */
 	@Autowired
@@ -46,10 +53,11 @@ public class PriceDboRepository implements PriceRepositoryPort {
 	 * @return Listado de precios del producto indicado.
 	 */
 	@Override
-	public List<Price> getProductPrice(Integer brand, Integer productId) {
-
+	public List<Price> getProductPrice(Integer brandId, Integer productId) {
+		logger.debug("Realizando consulta de la tabla 'Prices' por los campos: brandId->{}, productId->{}", brandId, productId);
+		
 		PriceEntity priceProductFilter = new PriceEntity();
-		priceProductFilter.setBrandId(brand);
+		priceProductFilter.setBrandId(brandId);
 		priceProductFilter.setProductId(productId);
 		Example<PriceEntity> example = Example.of(priceProductFilter);
 		return priceEntityMapper.toDomainList(priceRepository.findAll(example));

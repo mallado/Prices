@@ -2,6 +2,8 @@ package com.akkodis.test.prices.infrastructure.inputadapter.rest.resources;
 
 import java.time.OffsetDateTime;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public class PriceAPI {
 
 	/**
+	 * logger
+	 */
+    private static final Logger logger = LogManager.getLogger(PriceAPI.class);
+	
+	/**
 	 * Puerto de entrada del sistena
 	 */
 	@Autowired
@@ -61,10 +68,13 @@ public class PriceAPI {
 			@Parameter(required = true, example = "2020-12-31T23:59:59+01:00", description = "Fecha de aplicación para el cálculo del precio del producto") @RequestParam(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) OffsetDateTime applicationDate,
 			@Parameter(required = true, example = "35455", description = "Identificador del producto") @RequestParam(required = true) Integer productId,
 			HttpServletRequest request) throws RestException {
-
+		
 		final String requestMappingOperation = new AntPathMatcher().extractPathWithinPattern(
 				request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE).toString(),
 				request.getRequestURI());
+
+		logger.debug("Llamada al método {} del API con los atributos: brandId->{}, applicationDate->{}, productId->{}", requestMappingOperation, brandId, applicationDate, productId);
+		
 		try {
 			return ResponseEntity.ok(priceService.getProductPrice(brandId, applicationDate, productId));
 

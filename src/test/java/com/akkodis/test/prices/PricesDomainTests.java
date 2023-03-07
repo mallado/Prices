@@ -93,7 +93,7 @@ class PricesDomainTests {
 		assertEquals(applicationPrice.getBrandId(), brandId,  () -> "La cadena del grupo del precio devuelto (%s) no es la misma que la cadena solicitada (%s).".formatted(applicationPrice.getBrandId(), brandId)); 
 		assertEquals(applicationPrice.getProductId(), productId,  () -> "El identificador del producto devuelto (%s) no es el mismo que el identificador del producto solicitado (%s).".formatted(applicationPrice.getProductId(), productId));
 		assertEquals(applicationPrice.getPriceList(), priceList,  () -> "El identificador de tarifa devuelto (%s) no corresponde con el esperado (%s).".formatted(priceList, applicationPrice.getPriceList()));
-		assertEquals(applicationPrice.getPrice(), price,  () -> "El precio del producto devuelto (%s) no corresponde con el precio esperado (%s).".formatted(price, applicationPrice.getPrice()));
+		assertEquals(applicationPrice.getPvp(), price,  () -> "El precio del producto devuelto (%s) no corresponde con el precio esperado (%s).".formatted(price, applicationPrice.getPvp()));
 		assertEquals(applicationPrice.getCurr(), curr,  () -> "La moneda del precio devuelta (%s) no corresponde con la esperada (%s).".formatted(curr, applicationPrice.getCurr()));
 		logger.info("##### End productPriceTest #####");
 	}

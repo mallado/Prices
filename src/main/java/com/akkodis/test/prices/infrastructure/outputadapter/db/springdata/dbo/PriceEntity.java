@@ -67,8 +67,8 @@ public class PriceEntity {
 	/**
 	 * Precio final de venta.
 	 */
-	@Column(nullable = false)
-	private BigDecimal price;
+	@Column(nullable = false, name = "price")
+	private BigDecimal pvp;
 	
 	/**
 	 * Código iso de la moneda.
